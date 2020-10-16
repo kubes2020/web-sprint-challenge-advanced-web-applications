@@ -18,17 +18,19 @@ const Login = () => {
 
   const handleSubmit= (e) => {
     e.preventDefault()
-    console.log('test handleSubmit')
-    axios.post("http://localhost:5000/api/login", credentials)
+    // console.log('test handleSubmit')
+    axiosWithAuth().post("/login", credentials)
     .then((res) =>{
         console.log("res from login", res)
         window.localStorage.setItem('token', res.data.payload)
-        history.push("/")
+        history.push("/bubblepage")
     })
     .catch((err) =>{
         console.log("Bad error with login", err)
     })
   }
+
+  // i<3Lambd4
 
 
   // make a post request to retrieve a token from the api
