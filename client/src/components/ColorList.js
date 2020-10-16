@@ -6,8 +6,8 @@ const initialColor = {
   code: { hex: "" }
 };
 
-const ColorList = ({ colors, updateColors }) => {
-  console.log("this is colors coming in", colors);
+const ColorList = ({ colors, updateColors, setForceUpdate }) => {
+  // console.log("this is colors coming in", colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
 
@@ -46,7 +46,10 @@ const ColorList = ({ colors, updateColors }) => {
     axiosWithAuth().delete(`/colors/${colorToEdit.id}`)
     .then(res => {
       console.log("delete worked", res)
+      
+
     })
+    .then(setForceUpdate(true))
     .catch(err => {
       console.log("Bad error with delete", err)
     })
